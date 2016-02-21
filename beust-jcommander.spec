@@ -6,14 +6,14 @@
 
 Name:             %{?scl_prefix}%{pkg_name}
 Version:          1.30
-Release:          5.9%{?dist}
+Release:          5.10%{?dist}
 Summary:          Java framework for parsing command line parameters
 License:          ASL 2.0
 URL:              http://jcommander.org/
 Source0:          https://github.com/cbeust/%{short_name}/archive/%{short_name}-%{version}.tar.gz
 BuildArch:        noarch
 BuildRequires:    %{?scl_prefix_java_common}maven-local
-BuildRequires:    maven30-beust-jcommander
+BuildRequires:    %{?scl_prefix}beust-jcommander
 
 %description
 JCommander is a very small Java framework that makes it trivial to
@@ -27,20 +27,20 @@ This package contains the %{summary}.
 
 %prep
 %setup -q -n %{short_name}-%{short_name}-%{version}
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 chmod -x license.txt
 %{?scl:EOF}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_file : %{pkg_name}
 %mvn_build -f
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -52,6 +52,9 @@ set -e -x
 %doc license.txt notice.md
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.30-5.10
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 1.30-5.9
 - maven33 rebuild
 
