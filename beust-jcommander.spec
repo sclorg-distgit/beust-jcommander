@@ -6,13 +6,13 @@
 
 Name:             %{?scl_prefix}%{pkg_name}
 Version:          1.30
-Release:          5.10%{?dist}
+Release:          5.11%{?dist}
 Summary:          Java framework for parsing command line parameters
 License:          ASL 2.0
 URL:              http://jcommander.org/
 Source0:          https://github.com/cbeust/%{short_name}/archive/%{short_name}-%{version}.tar.gz
 BuildArch:        noarch
-BuildRequires:    %{?scl_prefix_java_common}maven-local
+BuildRequires:    %{?scl_prefix}maven-local
 BuildRequires:    %{?scl_prefix}beust-jcommander
 
 %description
@@ -52,6 +52,9 @@ set -e -x
 %doc license.txt notice.md
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 1.30-5.11
+- Fix BR on maven-local & co.
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.30-5.10
 - maven33 rebuild #2
 
